@@ -1,0 +1,8 @@
+com\apirest\faq\dao\DefaultFaqDao.class
+com\apirest\faq\dao\AdministrationMapper.class
+com\apirest\faq\RestJaxRsApplication.class
+com\apirest\faq\controller\FaqController.class
+com\apirest\faq\service\FaqService.class
+com\apirest\faq\dao\Administration.class
+com\apirest\faq\service\DefaultFaqService.class
+com\apirest\faq\dao\FaqDao.class
