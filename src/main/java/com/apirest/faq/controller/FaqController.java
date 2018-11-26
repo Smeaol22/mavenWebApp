@@ -22,7 +22,7 @@ public class FaqController {
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public String getCountryById(@PathParam("id") int id) {
-		String value = faqService.getVal();
+		String value = faqService.getPassword();
 		return value + id;
 	}
 }

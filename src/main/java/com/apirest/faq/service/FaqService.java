@@ -2,14 +2,16 @@ package com.apirest.faq.service;
 
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+
 public interface FaqService {
 	
 	String getPassword();
 	
 	List<QuestionAnswer> getAllQuestion();
 	
-	List<QuestionAnswer> getQuestion(String questionLabel);
+	List<QuestionAnswer> getQuestion(@NotNull String questionLabel);
 	
-	void insertQuestion(String questionLabel, String AnswerLabel, List<String> tagsLabel) throws Exception;
+	void insertQuestion(@NotNull String questionLabel, @NotNull String AnswerLabel, List<String> tagsLabel) throws Exception;
 
 }
