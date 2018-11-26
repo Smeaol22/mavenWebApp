@@ -1,39 +1,38 @@
 package com.apirest.faq.dao;
 
-import java.util.List;
-
 public class Question {
 
-	public Question() {}
-
-	private String label;
-	
-	private List<String> tags;
-	
-	private List<Integer> answerId;
-
-	public String getLabel() {
-		return label;
+	public Question() {
+		super();
 	}
 
-	public void setLabel(String label) {
-		this.label = label;
+	private int questionId;
+
+	private String questionLabel;
+
+	private int answerId;
+
+	public int getQuestionId() {
+		return questionId;
 	}
 
-	public List<String> getTags() {
-		return tags;
+	public void setQuestionId(int questionId) {
+		this.questionId = questionId;
 	}
 
-	public void setTags(List<String> tags) {
-		this.tags = tags;
+	public String getQuestionLabel() {
+		return questionLabel;
 	}
 
-	public List<Integer> getAnswerId() {
+	public void setQuestionLabel(String questionLabel) {
+		this.questionLabel = questionLabel;
+	}
+
+	public int getAnswerId() {
 		return answerId;
 	}
 
-	public void setAnswerId(List<Integer> answerId) {
+	public void setAnswerId(int answerId) {
 		this.answerId = answerId;
-	}	
-	
+	}
 }
