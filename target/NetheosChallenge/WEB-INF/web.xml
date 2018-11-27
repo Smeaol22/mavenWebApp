@@ -7,12 +7,10 @@
 
 
 	<listener>
-		<listener-class>
-			org.springframework.web.context.ContextLoaderListener
-		</listener-class>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
-	
+
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -21,25 +19,35 @@
 		</param-value>
 	</context-param>
 
- 
+
 
 	<servlet>
 		<servlet-name>jersey-servlet</servlet-name>
-		<servlet-class>
-			org.glassfish.jersey.servlet.ServletContainer
-		</servlet-class>
+		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
 
 		<init-param>
 			<param-name>javax.ws.rs.Application</param-name>
-			<param-value>com.apirest.faq.RestJaxRsApplication</param-value>			
-		</init-param>		
+			<param-value>com.apirest.faq.RestJaxRsApplication</param-value>
+		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
- 
-
 	<servlet-mapping>
 		<servlet-name>jersey-servlet</servlet-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>/api/*</url-pattern>
 	</servlet-mapping>
+
+	<!-- Spring Security -->
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+		<async-supported>true</async-supported>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>ASYNC</dispatcher>
+	</filter-mapping>
 </web-app>

@@ -7,12 +7,11 @@ import javax.validation.constraints.NotNull;
 public interface FaqDao {
 
 	/**
-	 * get password related to an login
+	 * getAdminDetail
 	 * 
-	 * @param String login
-	 * @return SHA2 EncryptedPassword
+	 * @return AdminDetail
 	 */
-	EncryptedPassword getPassword(@NotNull String login);
+	AdminDetail getAdminDetail();
 
 	/**
 	 * get answer for a specific answerId

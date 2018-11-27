@@ -14,7 +14,7 @@ public class DefaultFaqDao implements FaqDao {
 	@Qualifier("jdbcTemplate")
 	private JdbcTemplate jdbcTemplateObject;
 
-	String GETPASSWORD_SQL = "SELECT * FROM ADMINISTRATION WHERE encryptedpassword=";
+	String GETADMINDETAIL_SQL = "SELECT login_label, password_label FROM ADMINISTRATION ";
 
 	String GETANSWERLABEL_SQL = "SELECT answer_label FROM ANSWER WHERE answer_id =";
 
@@ -33,14 +33,13 @@ public class DefaultFaqDao implements FaqDao {
 	String GETANSWERID_SQL = "SELECT answer_id FROM ANSWER WHERE answer_label =";
 
 	String INSERTQUESTION_SQL = "INSERT INTO QUESTION(question_label, answer_id) VALUES (";
-	
+
 	String INSERTANSWER_SQL = "INSERT INTO ANSWER(answer_label) VALUES(";
 
 	@Override
-	public EncryptedPassword getPassword(String login) {
-		List<EncryptedPassword> administrations = jdbcTemplateObject.query(GETPASSWORD_SQL + login,
-				new EncryptedPasswordMapper());
-		return administrations.get(0);
+	public AdminDetail getAdminDetail() {
+		AdminDetail adminDetail = jdbcTemplateObject.queryForObject(GETADMINDETAIL_SQL, new AdminDetailMapper());
+		return adminDetail;
 	}
 
 	@Override
@@ -89,7 +88,7 @@ public class DefaultFaqDao implements FaqDao {
 	public int getAnswerId(String answerLabel) throws Exception {
 		return retreiveAnswerId(answerLabel);
 	}
-	
+
 	@Override
 	public void createNewAnswer(String answerLabel) throws Exception {
 		jdbcTemplateObject.execute(INSERTANSWER_SQL + answerLabel + ")");
@@ -130,6 +129,5 @@ public class DefaultFaqDao implements FaqDao {
 		}
 		return answerId;
 	}
-
 
 }

@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.apirest.faq.dao.EncryptedPassword;
+import com.apirest.faq.dao.AdminDetail;
 import com.apirest.faq.dao.FaqDao;
 import com.apirest.faq.dao.Question;
 
@@ -18,9 +18,10 @@ public class DefaultFaqService implements FaqService {
 	@Qualifier("faqDao")
 	private FaqDao faqDao;
 
-	public String getPassword() {
-		EncryptedPassword encryptedPassword = faqDao.getPassword("");
-		return encryptedPassword.getPassword();
+	@Override
+	public AdminDetail getAdminDetail() {
+		AdminDetail adminDetail = faqDao.getAdminDetail();
+		return adminDetail;
 	}
 
 	@Override
@@ -38,14 +39,19 @@ public class DefaultFaqService implements FaqService {
 	}
 
 	@Override
-	public void insertQuestion(String questionLabel, String answerLabel, List<String> tagsLabel) throws Exception {
-		int answerId = getAnswerIdOrCreate(answerLabel);
-		List<Integer> tagsId = getTagsIdOrCreate(tagsLabel);
+	public void insertQuestion(QuestionAnswer questionAnswer) throws Exception {
+		int answerId = getAnswerIdOrCreate(questionAnswer.getAnswerLabel());
+		String questionLabel = questionAnswer.getQuestionLabel();
 		faqDao.insertQuestion(questionLabel, answerId);
 		int questionId = faqDao.getQuestion(questionLabel).get(0).getQuestionId();
-		if (!tagsId.isEmpty()) {
-			for (int tagId : tagsId) {
-				faqDao.addTagToQuestion(tagId, questionId);
+		List<String> tagsLabelList = questionAnswer.getTagsLabelList();
+		if (tagsLabelList != null && !tagsLabelList.isEmpty()) {
+			List<Integer> tagsId = getTagsIdOrCreate(tagsLabelList);
+
+			if (!tagsId.isEmpty()) {
+				for (int tagId : tagsId) {
+					faqDao.addTagToQuestion(tagId, questionId);
+				}
 			}
 		}
 
