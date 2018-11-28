@@ -6,7 +6,7 @@ public class RestJaxRsApplication extends ResourceConfig {
 
 	public RestJaxRsApplication() {
 
-		packages("com.apirest.faq");
+		packages("com.apirest.faq.controller");
 
 	}
 }

@@ -11,7 +11,7 @@ import com.apirest.faq.dao.AdminDetail;
 import com.apirest.faq.dao.FaqDao;
 import com.apirest.faq.dao.Question;
 
-@Service
+@Service("faqservice")
 public class DefaultFaqService implements FaqService {
 
 	@Autowired

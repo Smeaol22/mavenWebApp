@@ -10,16 +10,19 @@
 	<url>http://maven.apache.org</url>
 	<properties>
 		<junit.version>3.8.1</junit.version>
-		<servletapi.version>2.5</servletapi.version>
+		<servletapi.version>3.1.0</servletapi.version>
 		<mysqlConnector.version>8.0.11</mysqlConnector.version>
-		<springcore.version>4.3.9.RELEASE</springcore.version>
-		<springcontext.version>4.2.5.RELEASE</springcontext.version>
+		<springcore.version>5.0.6.RELEASE</springcore.version>
+		<springcontext.version>5.0.6.RELEASE</springcontext.version>
+		<springweb.version>5.0.6.RELEASE</springweb.version>
+		<spring.version>5.0.6.RELEASE</spring.version>
 		<jersey.version>2.14</jersey.version>
-		<springjdbc.version>5.1.1.RELEASE</springjdbc.version>
+		<springjdbc.version>5.0.6.RELEASE</springjdbc.version>
 		<jacksoncore.version>2.9.7</jacksoncore.version>
 		<springsecuritycore.version>5.1.0.RELEASE</springsecuritycore.version>
 		<springsecurityconfig.version>5.1.0.RELEASE</springsecurityconfig.version>
 		<springsecurityweb.version>5.1.0.RELEASE</springsecurityweb.version>
+
 	</properties>
 	<dependencies>
 
@@ -67,13 +70,34 @@
 
 		<dependency>
 			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-expression</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
-			<version>${springcontext.version}</version>
+			<version>${springweb.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
+			<artifactId>javax.servlet-api</artifactId>
 			<version>${servletapi.version}</version>
 			<scope>provided</scope>
 		</dependency>
@@ -123,7 +147,7 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>NetheosChallenge</finalName>
+		<finalName>NChallenge</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

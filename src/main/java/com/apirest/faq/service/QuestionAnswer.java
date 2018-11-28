@@ -2,6 +2,8 @@ package com.apirest.faq.service;
 
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+
 public class QuestionAnswer {
 
 	public QuestionAnswer() {
@@ -9,8 +11,10 @@ public class QuestionAnswer {
 		this.tagsLabelList = null;
 	}
 
+	@NotNull
 	private String questionLabel;
 
+	@NotNull
 	private String answerLabel;
 
 	private List<String> tagsLabelList;
