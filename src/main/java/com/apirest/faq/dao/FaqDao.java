@@ -44,6 +44,14 @@ public interface FaqDao {
 	 * @return List of Question
 	 */
 	List<Question> getAllQuestion();
+	
+	/**
+	 * return if question exist in base
+	 * 
+	 * @param strict questionLabel 
+	 * @return boolean
+	 */
+	boolean isQuestionAlreadyInBase(@NotNull String questionLabel);
 
 	/**
 	 * retrieve tagId if tag already exist exist otherwise 0

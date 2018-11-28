@@ -5,8 +5,11 @@ import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.stereotype.Service;
+
 import com.apirest.faq.dao.AdminDetail;
 
+@Service
 public interface FaqService {
 
 	AdminDetail getAdminDetail();

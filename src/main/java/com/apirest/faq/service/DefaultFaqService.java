@@ -5,13 +5,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import com.apirest.faq.dao.AdminDetail;
 import com.apirest.faq.dao.FaqDao;
 import com.apirest.faq.dao.Question;
 
-@Service("faqservice")
+@Component
 public class DefaultFaqService implements FaqService {
 
 	@Autowired
@@ -22,6 +22,10 @@ public class DefaultFaqService implements FaqService {
 	public AdminDetail getAdminDetail() {
 		AdminDetail adminDetail = faqDao.getAdminDetail();
 		return adminDetail;
+	}
+
+	public DefaultFaqService() {
+		super();
 	}
 
 	@Override
@@ -40,21 +44,22 @@ public class DefaultFaqService implements FaqService {
 
 	@Override
 	public void insertQuestion(QuestionAnswer questionAnswer) throws Exception {
-		int answerId = getAnswerIdOrCreate(questionAnswer.getAnswerLabel());
 		String questionLabel = questionAnswer.getQuestionLabel();
+		if (faqDao.isQuestionAlreadyInBase(questionLabel)) {
+			throw new Exception("Question already registered");
+		}
+		int answerId = getAnswerIdOrCreate(questionAnswer.getAnswerLabel());
 		faqDao.insertQuestion(questionLabel, answerId);
 		int questionId = faqDao.getQuestion(questionLabel).get(0).getQuestionId();
 		List<String> tagsLabelList = questionAnswer.getTagsLabelList();
 		if (tagsLabelList != null && !tagsLabelList.isEmpty()) {
 			List<Integer> tagsId = getTagsIdOrCreate(tagsLabelList);
-
 			if (!tagsId.isEmpty()) {
 				for (int tagId : tagsId) {
 					faqDao.addTagToQuestion(tagId, questionId);
 				}
 			}
 		}
-
 	}
 
 	private List<QuestionAnswer> retreiveQuestionAnswerList(List<Question> questionList) {

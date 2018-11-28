@@ -35,9 +35,19 @@ public class SecurityJavaConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// @formatter:off
-		http.csrf().disable().exceptionHandling().authenticationEntryPoint(restAuthenticationEntryPoint).and()
-				.authorizeRequests().antMatchers("/api/faq").permitAll().antMatchers("/api/admin/**").hasRole("ADMIN")
-				.and().formLogin().successHandler(mySuccessHandler).failureHandler(myFailureHandler).and().logout();
+		http.csrf().disable()
+		.exceptionHandling()
+		.authenticationEntryPoint(restAuthenticationEntryPoint)
+		.and()
+		.authorizeRequests()
+		.antMatchers("/api/faq").permitAll()
+		.antMatchers("/api/admin/**").hasRole("ADMIN")
+		.and()
+		.formLogin()
+		.successHandler(mySuccessHandler)
+		.failureHandler(myFailureHandler)
+		.and()
+		.logout();
 		// @formatter:on
 
 	}

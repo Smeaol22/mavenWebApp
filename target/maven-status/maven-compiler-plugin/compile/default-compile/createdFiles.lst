@@ -14,5 +14,4 @@ com\apirest\faq\dao\Question.class
 com\apirest\faq\service\QuestionAnswer.class
 com\apirest\faq\spring\security\MySavedRequestAwareAuthenticationSuccessHandler.class
 com\apirest\faq\spring\SecurityJavaConfig.class
-com\apirest\faq\spring\SecurityWebApplicationInitializer.class
 com\apirest\faq\dao\AdminDetailMapper.class

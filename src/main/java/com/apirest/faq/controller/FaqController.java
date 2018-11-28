@@ -11,16 +11,16 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import com.apirest.faq.service.FaqService;
 import com.apirest.faq.service.QuestionAnswer;
 
+@Component
 @Path("/api")
 public class FaqController {
 
 	@Autowired
-	@Qualifier("faqservice")
 	private FaqService faqService;
 
 	@GET
@@ -31,17 +31,17 @@ public class FaqController {
 	}
 
 	@GET
-	@Path("admin/question/all")
+	@Path("/admin/question/all")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<QuestionAnswer> getAllQuestion() {
 		return faqService.getAllQuestion();
 	}
 
 	@POST
-	@Path("admin/question/insert")
+	@Path("/admin/question/insert")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public String getAllQuestion(QuestionAnswer questionAnswer) {
+	public String insertQuestion(QuestionAnswer questionAnswer) {
 		String answer = "Record ";
 		try {
 			faqService.insertQuestion(questionAnswer);
@@ -52,4 +52,5 @@ public class FaqController {
 		}
 		return answer;
 	}
+
 }

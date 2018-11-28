@@ -11,19 +11,13 @@
 		http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 	<context:component-scan
-		base-package="com.apirest.faq" />
-
-	<!-- <bean id="faqcontroller"
-		class="com.apirest.faq.controller.FaqController" />
-	<bean id="faqservice"
-		class="com.apirest.faq.service.DefaultFaqService" />
-	<bean id="faqdao" class="com.apirest.faq.dao.DefaultFaqDao" />
-	<bean id="restAuthenticationEntryPoint"
-		class="com.apirest.faq.spring.spring.security.RestAuthenticationEntryPoint" />
-	<bean id="mySavedRequestAwareAuthenticationSuccessHandler"
-		class="com.apirest.faq.spring.security.MySavedRequestAwareAuthenticationSuccessHandler" /> -->
+		base-package="com.apirest.faq.*" />
+		
 	
-	<bean id="springSecurityFilterChain" class="org.springframework.web.filter.DelegatingFilterProxy"/>
+	<bean id="faqService" class="com.apirest.faq.service.DefaultFaqService" />
+	<bean id="faqdao" class="com.apirest.faq.dao.DefaultFaqDao" />
+	<bean id="restAuthenticationEntryPoint" class="com.apirest.faq.spring.security.RestAuthenticationEntryPoint" />
+	<bean id="mySavedRequestAwareAuthenticationSuccessHandler" class="com.apirest.faq.spring.security.MySavedRequestAwareAuthenticationSuccessHandler" />
 	
 	<!-- Initialization for data source -->
 	<bean id="dataSource"
