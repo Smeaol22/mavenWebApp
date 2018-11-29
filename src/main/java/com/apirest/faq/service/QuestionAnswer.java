@@ -4,6 +4,11 @@ import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
+/**
+ * Buisness object:
+ * contain question, answer tags label
+ *
+ */
 public class QuestionAnswer {
 
 	public QuestionAnswer() {

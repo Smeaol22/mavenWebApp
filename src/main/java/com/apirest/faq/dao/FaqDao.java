@@ -4,6 +4,9 @@ import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
+import com.apirest.faq.dao.object.AdminDetail;
+import com.apirest.faq.dao.object.Question;
+
 public interface FaqDao {
 
 	/**

@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.stereotype.Service;
 
-import com.apirest.faq.dao.AdminDetail;
+import com.apirest.faq.dao.object.AdminDetail;
 
 @Service
 public interface FaqService {

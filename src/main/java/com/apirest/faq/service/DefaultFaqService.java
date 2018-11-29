@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-import com.apirest.faq.dao.AdminDetail;
+import com.apirest.faq.dao.object.AdminDetail;
 import com.apirest.faq.dao.FaqDao;
-import com.apirest.faq.dao.Question;
+import com.apirest.faq.dao.object.Question;
 
 @Component
 public class DefaultFaqService implements FaqService {

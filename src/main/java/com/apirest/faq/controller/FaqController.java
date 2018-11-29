@@ -2,6 +2,8 @@ package com.apirest.faq.controller;
 
 import java.util.List;
 
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -23,6 +25,14 @@ public class FaqController {
 	@Autowired
 	private FaqService faqService;
 
+	/**
+	 * For all user as for a question (or part of it)
+	 * and received the answer the tag(s) associated
+	 * If part of question, can received a list of possible matching
+	 * @param question
+	 * @return
+	 */
+	@PermitAll
 	@GET
 	@Path("/faq/{question}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -30,13 +40,25 @@ public class FaqController {
 		return faqService.getQuestion(question);
 	}
 
+	/**
+	 * For Admin only
+	 * @return all the question, answer and associated tag(s)
+	 */
+	@RolesAllowed("ADMIN")
 	@GET
 	@Path("/admin/question/all")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<QuestionAnswer> getAllQuestion() {
 		return faqService.getAllQuestion();
 	}
-
+	
+	/**
+	 * For admin only 
+	 * can insert question, with answer and associated tag(s)
+	 * @param questionAnswer
+	 * @return
+	 */
+	@RolesAllowed("ADMIN")
 	@POST
 	@Path("/admin/question/insert")
 	@Consumes(MediaType.APPLICATION_JSON)

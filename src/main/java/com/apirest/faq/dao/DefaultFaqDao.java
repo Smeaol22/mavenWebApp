@@ -9,6 +9,11 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.apirest.faq.dao.object.AdminDetail;
+import com.apirest.faq.dao.object.AdminDetailMapper;
+import com.apirest.faq.dao.object.Question;
+import com.apirest.faq.dao.object.QuestionMapper;
+
 @Repository("faqDao")
 public class DefaultFaqDao implements FaqDao {
 
@@ -60,8 +65,8 @@ public class DefaultFaqDao implements FaqDao {
 
 	@Override
 	public List<Question> getQuestion(String questionLabel) {
-		List<Question> questions = jdbcTemplateObject
-				.query(GETQUESTION_SQL + RESTRICTQUESTION_SQL + StringParser(questionLabel) + "%'", new QuestionMapper());
+		List<Question> questions = jdbcTemplateObject.query(
+				GETQUESTION_SQL + RESTRICTQUESTION_SQL + StringParser(questionLabel) + "%'", new QuestionMapper());
 		return questions;
 	}
 
@@ -73,7 +78,8 @@ public class DefaultFaqDao implements FaqDao {
 
 	@Override
 	public boolean isQuestionAlreadyInBase(String questionLabel) {
-		int countQuestion = jdbcTemplateObject.queryForObject(COUNTQUESTION_SQL + StringParser(questionLabel) + "'", Integer.class);
+		int countQuestion = jdbcTemplateObject.queryForObject(COUNTQUESTION_SQL + StringParser(questionLabel) + "'",
+				Integer.class);
 		return countQuestion != 0;
 	}
 
@@ -114,7 +120,8 @@ public class DefaultFaqDao implements FaqDao {
 		int getTagId = -1;
 		if (taglabel != null) {
 			try {
-				String answer = jdbcTemplateObject.queryForObject(GETTAGID_SQL + StringParser(taglabel) + "'", String.class);
+				String answer = jdbcTemplateObject.queryForObject(GETTAGID_SQL + StringParser(taglabel) + "'",
+						String.class);
 				getTagId = Integer.parseInt(answer);
 			} catch (EmptyResultDataAccessException e) {
 				getTagId = 0;
@@ -129,7 +136,8 @@ public class DefaultFaqDao implements FaqDao {
 		int answerId = -1;
 		if (answerLabel != null) {
 			try {
-				String answer = jdbcTemplateObject.queryForObject(GETANSWERID_SQL + StringParser(answerLabel) + "'", String.class);
+				String answer = jdbcTemplateObject.queryForObject(GETANSWERID_SQL + StringParser(answerLabel) + "'",
+						String.class);
 				answerId = Integer.parseInt(answer);
 			} catch (EmptyResultDataAccessException e) {
 				answerId = 0;
@@ -139,7 +147,7 @@ public class DefaultFaqDao implements FaqDao {
 		}
 		return answerId;
 	}
-	
+
 	private String StringParser(String inputString) {
 		List<String> forbidenCharacterList = Arrays.asList("*", "/", "\\", ";", "'", "[", "]", "\"");
 		for (String forbidenCharacter : forbidenCharacterList) {

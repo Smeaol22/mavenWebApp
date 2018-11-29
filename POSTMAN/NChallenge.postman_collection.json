@@ -1,0 +1,129 @@
+{
+	"info": {
+		"_postman_id": "fea5bd70-51c6-47da-a988-65f5ebdc6ca5",
+		"name": "NChallenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/NChallenge/api/admin/question/all",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "encryptedpassword",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "login",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/NChallenge/api/admin/question/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"NChallenge",
+						"api",
+						"admin",
+						"question",
+						"all"
+					]
+				},
+				"description": "List all question/answer/tag from database if logged as admin"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/NChallenge/api/faq/bleu",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/NChallenge/api/faq/bleu",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"NChallenge",
+						"api",
+						"faq",
+						"bleu"
+					]
+				},
+				"description": "For all user (no logging required) searching question by inserting part(all) of as path param"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/NChallenge/api/admin/question/insert",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "encryptedpassword",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "login",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"questionLabel\": \"Quel est la couleur du cheval gise d henry IV\",\n    \"answerLabel\": \"gise\",\n    \"tagsLabelList\": [\n        \"gise\"\n    ]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/NChallenge/api/admin/question/insert",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"NChallenge",
+						"api",
+						"admin",
+						"question",
+						"insert"
+					]
+				},
+				"description": "ADMIN USER ONLY\n\nuse it to insert question/answer/[tag] in base.\n\nNo duplicate question "
+			},
+			"response": []
+		}
+	]
+}
